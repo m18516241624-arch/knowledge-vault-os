@@ -226,6 +226,12 @@
         font-style: normal;
       }
 
+      .map-terminal strong {
+        display: block;
+        color: #d8c08c;
+        font-size: 12px;
+      }
+
       main {
         padding: 0;
       }
@@ -479,6 +485,39 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       }
 
+      .product-stack {
+        display: grid;
+        gap: 0;
+      }
+
+      .product-line {
+        display: grid;
+        grid-template-columns: 98px minmax(0, 1fr);
+        gap: 16px;
+        padding: 18px;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+      }
+
+      .product-line:last-child {
+        border-bottom: 0;
+      }
+
+      .product-line span {
+        color: #d8c08c;
+        font-weight: 900;
+      }
+
+      .product-line strong {
+        display: block;
+        color: #fff;
+        font-size: 18px;
+      }
+
+      .product-line p {
+        margin-top: 5px;
+        color: #cbd8cf;
+      }
+
       .explain-list {
         display: grid;
         gap: 14px;
@@ -575,7 +614,7 @@
         font-size: 18px;
       }
 
-      .repo-links {
+      .engagement-panel {
         display: grid;
         gap: 12px;
         padding: 22px;
@@ -584,17 +623,24 @@
         background: rgba(255,255,255,.08);
       }
 
-      .repo-links a {
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+      .engagement-step {
+        min-height: 74px;
         padding: 10px 14px;
         border-radius: 8px;
-        background: #d8c08c;
-        color: #172018;
-        font-weight: 900;
-        text-decoration: none;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.16);
+      }
+
+      .engagement-step b {
+        display: block;
+        color: #d8c08c;
+        font-size: 15px;
+      }
+
+      .engagement-step span {
+        display: block;
+        margin-top: 4px;
+        color: #edf3ee;
       }
 
       footer {
@@ -741,18 +787,18 @@
   <body>
     <header class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">Codex 可安装的本地知识库操作系统</p>
+        <p class="eyebrow">面向 Codex 深度用户的本地知识库操作系统</p>
         <h1>Knowledge Vault OS <span>把资料变成可调用的长期知识</span></h1>
         <p class="lead">它不是 Obsidian 模板，也不是把文件丢给 RAG 的问答库。它是一套从感知、证据、编译到 Agent 调用的工作流，让 Codex 能持续维护你的 Markdown 主库。</p>
         <div class="hero-proof" aria-label="核心能力">
           <span>Markdown / Obsidian 主库</span>
           <span>Source Packet 证据层</span>
           <span>Agent Brief 调用层</span>
-          <span>Dashboard Lite 可视化</span>
+          <span>本地驾驶舱可视化</span>
         </div>
         <div class="actions">
-          <a class="button primary" href="https://github.com/m18516241624-arch/knowledge-vault-os">打开 GitHub 仓库</a>
-          <a class="button" href="https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/docs/INSTALL.md">阅读安装说明</a>
+          <span class="button primary">私有化知识系统</span>
+          <span class="button">方法 + 工具 + 陪跑</span>
         </div>
       </div>
 
@@ -760,7 +806,7 @@
         <div class="map-line one"></div>
         <div class="map-line two"></div>
         <div class="map-line three"></div>
-        <div class="map-terminal"><em>$</em> npm run validate<br><em>$</em> daily-capture<br><em>$</em> compile-inbox<br><em>$</em> dashboard-lite</div>
+        <div class="map-terminal"><strong>OPERATING LOOP</strong>感知来源<br>登记证据<br>编译结论<br>调用知识</div>
         <div class="map-node n1"><b>00-inbox</b><small>新来源先入证据层，不直接污染主库。</small></div>
         <div class="map-node n2"><b>Capture Ledger</b><small>记录来源、时间窗口、敏感等级和处理状态。</small></div>
         <div class="map-node n3"><b>Topic Pages</b><small>稳定结论进入项目、决策、方法和上下文页。</small></div>
@@ -779,8 +825,8 @@
           <strong>聊天记录会丢，RAG 会飘，只有可追溯的 Markdown 主库能长期复用。</strong>
         </div>
         <div class="strip-cell">
-          <span class="strip-label">当前版本</span>
-          <strong>v0.2.0 已包含安装、采集、编译、dashboard、验证和发布包。</strong>
+          <span class="strip-label">产品形态</span>
+          <strong>交付的不是一组文件清单，而是知识库结构、证据规则、编译流程、调用入口和本地可视化。</strong>
         </div>
       </div>
 
@@ -820,7 +866,7 @@
             <article class="basic">
               <span class="num">A</span>
               <h3>Source Packet</h3>
-              <p>每个来源先变成来源包，里面记录路径、时间窗口、敏感等级、候选结论和下一步。它是证据，不是最终知识。</p>
+              <p>每个来源先变成来源包，里面记录来源位置、时间窗口、敏感等级、候选结论和下一步。它是证据，不是最终知识。</p>
             </article>
             <article class="basic">
               <span class="num">B</span>
@@ -846,32 +892,32 @@
             <article class="timeline-row">
               <div class="tag">Step 01</div>
               <div><h3>感知</h3><p>扫描本地项目、Markdown 笔记、导出文件或其他来源。</p></div>
-              <div class="path">scripts/daily-capture.mjs</div>
+              <div class="path">来源进入视野</div>
             </article>
             <article class="timeline-row">
               <div class="tag">Step 02</div>
               <div><h3>来源登记</h3><p>明确来源是谁、什么时候产生、敏感等级是什么、是否允许自动处理。</p></div>
-              <div class="path">_maintenance/source-registry.md</div>
+              <div class="path">权限与边界清楚</div>
             </article>
             <article class="timeline-row">
               <div class="tag">Step 03</div>
               <div><h3>证据入账</h3><p>把原始线索写入 inbox、source packet 和 capture ledger。</p></div>
-              <div class="path">00-inbox/source-packets/</div>
+              <div class="path">事实先保留证据</div>
             </article>
             <article class="timeline-row">
               <div class="tag">Step 04</div>
               <div><h3>稳定性判断</h3><p>判断哪些内容只是临时记录，哪些内容可以成为长期复用的结论。</p></div>
-              <div class="path">decision: review / compile</div>
+              <div class="path">不把线索误当结论</div>
             </article>
             <article class="timeline-row">
               <div class="tag">Step 05</div>
               <div><h3>主题页编译</h3><p>把明确可复用的结论写入项目、决策、方法、上下文或 AI Skill 页面。</p></div>
-              <div class="path">scripts/compile-inbox.mjs</div>
+              <div class="path">知识进入长期主库</div>
             </article>
             <article class="timeline-row">
               <div class="tag">Step 06</div>
               <div><h3>Agent 调用</h3><p>Codex 开始任务前读取全局索引、当前重点和任务相关主题页。</p></div>
-              <div class="path">80-agent-briefs/</div>
+              <div class="path">智能体开始带上下文工作</div>
             </article>
           </div>
         </div>
@@ -886,7 +932,7 @@
           <div class="layers">
             <article class="layer">
               <span class="layer-mark">1</span>
-              <div><h3>来源治理层</h3><p>定义来源等级、敏感边界、入口路径和能否自动编译。</p></div>
+              <div><h3>来源治理层</h3><p>定义来源等级、敏感边界、入口规则和能否自动编译。</p></div>
             </article>
             <article class="layer">
               <span class="layer-mark">2</span>
@@ -902,11 +948,11 @@
             </article>
             <article class="layer">
               <span class="layer-mark">5</span>
-              <div><h3>本地可视化层</h3><p>Dashboard Lite 只读本地 vault，用于查看分布、证据队列和健康问题。</p></div>
+              <div><h3>本地可视化层</h3><p>只读本地 vault，用于查看分布、证据队列、项目状态和健康问题。</p></div>
             </article>
             <article class="layer">
-              <span class="layer-mark">Git</span>
-              <div><h3>版本与发布</h3><p>Git 负责回滚、迁移和公开发布；发布包不包含用户真实私密资料。</p></div>
+              <span class="layer-mark">Ops</span>
+              <div><h3>运营与复盘</h3><p>通过维护日志、状态卡和复盘机制，让知识库持续长出结构，而不是越用越乱。</p></div>
             </article>
           </div>
         </div>
@@ -915,27 +961,24 @@
       <section class="section reveal">
         <div class="section-inner">
           <div class="section-head">
-            <h2>一天里怎么用</h2>
-            <p>新用户可以先不用理解所有文件夹。按下面这条日常路径，就能让系统运转起来。</p>
+            <h2>交付后一天里怎么运转</h2>
+            <p>用户不需要先理解所有底层文件。系统的价值是把“收集资料、判断价值、沉淀结论、交给 Codex 调用”变成一条固定工作链。</p>
           </div>
           <div class="day-plan">
             <div class="command-panel">
               <div class="command-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <pre><code>git clone https://github.com/m18516241624-arch/knowledge-vault-os.git
-cd knowledge-vault-os
-npm install
-npm run validate
-
-node scripts/init-vault.mjs ~/Documents/MyKnowledgeVault
-node scripts/daily-capture.mjs ~/Documents/MyKnowledgeVault ~/Documents/MyProject --target-date YYYY-MM-DD
-node scripts/compile-inbox.mjs ~/Documents/MyKnowledgeVault --dry-run
-node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
+              <div class="product-stack">
+                <div class="product-line"><span>01</span><div><strong>日常来源进入证据层</strong><p>项目文件、聊天导出、会议纪要、灵感片段先被收进可追溯区域。</p></div></div>
+                <div class="product-line"><span>02</span><div><strong>重要线索等待判断</strong><p>系统标记来源、敏感等级、可用程度和下一步，不让临时材料直接污染主库。</p></div></div>
+                <div class="product-line"><span>03</span><div><strong>稳定结论写入主题页</strong><p>项目判断、方法论、决策边界和上下文被编译进长期知识结构。</p></div></div>
+                <div class="product-line"><span>04</span><div><strong>Codex 带着上下文做事</strong><p>下次写方案、复盘项目或处理需求时，智能体先读压缩入口再行动。</p></div></div>
+              </div>
             </div>
             <div class="explain-list">
-              <div class="explain"><strong>先初始化 vault</strong><p>生成一套 Markdown 目录、模板和 Agent 入口文件，Obsidian 可以直接打开。</p></div>
-              <div class="explain"><strong>再捕获当天来源</strong><p>daily-capture 会记录变更文件，但不会擅自总结成长期知识。</p></div>
-              <div class="explain"><strong>人工或 Codex 做晋升判断</strong><p>只有当 source packet 写明 <code>decision: compile</code>、稳定结论和目标页面时，才进入编译。</p></div>
-              <div class="explain"><strong>最后让 Codex 调用</strong><p>做项目、写文章、整理方法或处理需求前，让 Codex 先读 Agent Brief 和相关主题页。</p></div>
+              <div class="explain"><strong>不是资料搬家</strong><p>交付目标不是把文件复制进一个新文件夹，而是建立“什么能进、怎么判断、写到哪里”的知识治理规则。</p></div>
+              <div class="explain"><strong>不是一次性问答库</strong><p>它更像长期工作的操作系统：今天的证据、明天的结论、下周的项目判断能接上。</p></div>
+              <div class="explain"><strong>不是全自动黑箱</strong><p>敏感资料、公司上下文和个人聊天都需要边界。系统保留证据，但长期主题页只沉淀可复用结论。</p></div>
+              <div class="explain"><strong>最终服务智能体协作</strong><p>Codex 不再从零猜背景，而是按入口读取项目状态、方法论、决策和上下文。</p></div>
             </div>
           </div>
         </div>
@@ -944,18 +987,18 @@ node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
       <section class="section alt reveal">
         <div class="section-inner">
           <div class="section-head">
-            <h2>包里具体有什么</h2>
-            <p>v0.2.0 已经不是一个空壳，而是一套可以安装、验证、打包和重复运行的本地工作流。</p>
+            <h2>产品交付包含什么</h2>
+            <p>Knowledge Vault OS 不是单个模板，而是一套能落在本地、能被 Codex 读取、能长期维护的知识操作系统。</p>
           </div>
           <div class="package-grid">
-            <article class="package-item"><b>Codex Plugin</b><p><code>.codex-plugin/plugin.json</code> 描述插件入口和安装信息。</p></article>
-            <article class="package-item"><b>Main Skill</b><p><code>skills/knowledge-vault-os/</code> 规定 Codex 如何初始化、接入、编译和调用。</p></article>
-            <article class="package-item"><b>Vault Template</b><p><code>assets/vault-template/</code> 提供公开安全的 Markdown 主库结构。</p></article>
-            <article class="package-item"><b>Daily Capture</b><p>扫描本地来源目录，写 source packet、ledger 和 daily log。</p></article>
-            <article class="package-item"><b>Compile Inbox</b><p>只编译明确标记的来源包，重复运行不会重复追加。</p></article>
-            <article class="package-item"><b>Dashboard Lite</b><p>静态页面读取本地 JSON，展示分布、项目、证据队列和健康问题。</p></article>
-            <article class="package-item"><b>Validation</b><p><code>npm run validate</code> 覆盖 manifest、Skill、demo vault 和隐私扫描。</p></article>
-            <article class="package-item"><b>Release Build</b><p><code>npm run package:plugin</code> 生成本地发布归档，便于后续分发和校验。</p></article>
+            <article class="package-item"><b>知识库骨架</b><p>按 inbox、项目、决策、方法、AI Skill、Agent Brief 和维护区分层。</p></article>
+            <article class="package-item"><b>来源治理规则</b><p>定义外部资料、聊天记录、项目文件、网页资料进入主库前的处理边界。</p></article>
+            <article class="package-item"><b>证据晋升机制</b><p>新材料先成为证据，经过稳定性判断后再进入长期主题页。</p></article>
+            <article class="package-item"><b>Codex 调用入口</b><p>让智能体开始任务前知道该读哪里、信什么、哪些内容不能越界。</p></article>
+            <article class="package-item"><b>本地可视化</b><p>查看知识分布、项目状态、未编译证据和维护健康度。</p></article>
+            <article class="package-item"><b>敏感边界设计</b><p>把个人、公司、客户和聊天材料分层处理，减少误外传和误编译。</p></article>
+            <article class="package-item"><b>维护节奏</b><p>用日常捕获、周期复盘和状态卡，让知识库持续可用。</p></article>
+            <article class="package-item"><b>陪跑校准</b><p>根据真实工作流调整目录、规则、入口和 Codex 使用方式。</p></article>
           </div>
         </div>
       </section>
@@ -972,7 +1015,7 @@ node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
               <ul>
                 <li>长期使用 Codex，希望它记住项目上下文的人。</li>
                 <li>用 Obsidian / Markdown 做个人知识主库的人。</li>
-                <li>希望把自己的知识整理方法打包给别人安装的人。</li>
+                <li>希望把个人或团队知识体系变成可运营系统的人。</li>
                 <li>重视隐私边界，不想把原始聊天和公司资料直接外传的人。</li>
               </ul>
             </article>
@@ -992,19 +1035,20 @@ node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
       <section class="cta reveal">
         <div class="cta-inner">
           <div>
-            <h2>先把主链跑通，再谈更复杂的自动化</h2>
-            <p>v0.2.0 的重点是让“本地优先、证据先行、谨慎编译、Agent 调用”成为可安装、可验证、可发布的基础能力。</p>
+            <h2>先把知识主链跑通，再谈更复杂的自动化</h2>
+            <p>Knowledge Vault OS 的重点，是让“本地优先、证据先行、谨慎编译、Agent 调用”变成一套可以落地到真实工作里的系统能力。</p>
           </div>
-          <div class="repo-links">
-            <a href="https://github.com/m18516241624-arch/knowledge-vault-os">查看源码与文档</a>
-            <a href="https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/docs/INSTALL.md">阅读安装说明</a>
+          <div class="engagement-panel" aria-label="合作评估路径">
+            <div class="engagement-step"><b>第一步</b><span>盘点已有资料、知识入口和敏感边界。</span></div>
+            <div class="engagement-step"><b>第二步</b><span>设计本地主库结构、证据规则和 Codex 调用入口。</span></div>
+            <div class="engagement-step"><b>第三步</b><span>用真实项目试跑，再把可复用流程固化下来。</span></div>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      Knowledge Vault OS for Codex · MIT License · v0.2.0 · Local-first Markdown knowledge workflow
+      Knowledge Vault OS for Codex · Product Introduction · Local-first AI knowledge workflow
     </footer>
 
     <script>

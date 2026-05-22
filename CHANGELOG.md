@@ -5,6 +5,7 @@
 - Expanded the standalone HTML project introduction page with stronger visual hierarchy, workflow diagrams, basic concepts, usage steps, and responsive checks.
 - Removed release download calls to action from the HTML introduction page.
 - Hardened the introduction page so static screenshots and no-scroll browser contexts do not hide content.
+- Repositioned the HTML introduction page as a product-only overview with no repository, source, command, download, or installation paths.
 
 ## 0.2.0
 
