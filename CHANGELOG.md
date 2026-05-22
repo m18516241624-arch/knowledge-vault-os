@@ -6,6 +6,7 @@
 - Removed release download calls to action from the HTML introduction page.
 - Hardened the introduction page so static screenshots and no-scroll browser contexts do not hide content.
 - Repositioned the HTML introduction page as a product-only overview with no repository, source, command, download, or installation paths.
+- Reframed the introduction page around the "external brain" value proposition, emphasizing perception, translation, judgment, and no-repeat Codex context.
 
 ## 0.2.0
 
