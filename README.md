@@ -128,6 +128,7 @@ Compile my inbox into stable project, decision, and method notes.
 ## 文档
 
 - [安装说明](docs/INSTALL.md)
+- [项目介绍页](docs/INTRODUCTION.html)
 - [架构说明](docs/ARCHITECTURE.md)
 - [隐私模型](docs/PRIVACY.md)
 - [更新记录](CHANGELOG.md)

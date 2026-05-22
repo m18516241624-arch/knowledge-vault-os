@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added a standalone HTML project introduction page.
+
 ## 0.2.0
 
 - Added repeatable daily capture for local source folders.
