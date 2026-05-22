@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Knowledge Vault OS Dashboard Lite</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Knowledge Vault OS</p>
+        <h1>Dashboard Lite</h1>
+      </div>
+      <label class="file-control">
+        <span>Load JSON</span>
+        <input id="jsonFile" type="file" accept="application/json,.json">
+      </label>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Vault summary">
+        <article>
+          <span class="label">Notes</span>
+          <strong id="noteCount">0</strong>
+        </article>
+        <article>
+          <span class="label">Projects</span>
+          <strong id="projectCount">0</strong>
+        </article>
+        <article>
+          <span class="label">Evidence</span>
+          <strong id="evidenceCount">0</strong>
+        </article>
+        <article>
+          <span class="label">Health</span>
+          <strong id="healthCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Distribution</h2>
+          <select id="distributionSelect" aria-label="Distribution">
+            <option value="byFolder">Folder</option>
+            <option value="byStatus">Status</option>
+            <option value="bySensitivity">Sensitivity</option>
+            <option value="byType">Type</option>
+          </select>
+        </div>
+        <div id="distribution" class="bars"></div>
+      </section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Projects</h2>
+          </div>
+          <div id="projects" class="list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Evidence Queue</h2>
+          </div>
+          <div id="evidence" class="list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Recent Notes</h2>
+        </div>
+        <div id="recent" class="table"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Health Issues</h2>
+        </div>
+        <div id="health" class="list"></div>
+      </section>
+    </main>
+
+    <script src="./sample-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

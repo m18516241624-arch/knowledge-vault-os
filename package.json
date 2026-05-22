@@ -1,0 +1,37 @@
+{
+  "name": "knowledge-vault-os",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Local-first Markdown knowledge operating system workflows for Codex.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "install:local": "node scripts/install-local.mjs",
+    "init:vault": "node scripts/init-vault.mjs",
+    "scan:sources": "node scripts/scan-sources.mjs",
+    "daily:capture": "node scripts/daily-capture.mjs",
+    "compile:inbox": "node scripts/compile-inbox.mjs",
+    "lint:vault": "node scripts/wiki-lint.mjs",
+    "dashboard:build": "node scripts/build-dashboard-lite.mjs",
+    "browsers:install": "playwright install chromium",
+    "verify:dashboard": "node scripts/verify-dashboard-lite.mjs",
+    "package:plugin": "node scripts/package-plugin.mjs",
+    "validate": "node scripts/validate-package.mjs"
+  },
+  "keywords": [
+    "codex",
+    "obsidian",
+    "markdown",
+    "knowledge-vault",
+    "personal-knowledge-management",
+    "llm-wiki"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m18516241624-arch/knowledge-vault-os.git"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0",
+    "pngjs": "^7.0.0"
+  }
+}

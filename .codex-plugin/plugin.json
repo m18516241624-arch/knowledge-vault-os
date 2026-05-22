@@ -1,0 +1,45 @@
+{
+  "name": "knowledge-vault-os",
+  "version": "0.2.0",
+  "description": "Install a local-first Markdown knowledge operating system for Codex: initialize a vault, capture local evidence, compile stable knowledge, view a lightweight dashboard, and call the vault during real work.",
+  "author": {
+    "name": "Aijiayu"
+  },
+  "homepage": "https://github.com/m18516241624-arch/knowledge-vault-os",
+  "repository": "https://github.com/m18516241624-arch/knowledge-vault-os",
+  "license": "MIT",
+  "keywords": [
+    "knowledge-vault",
+    "obsidian",
+    "markdown",
+    "codex",
+    "personal-knowledge-management",
+    "agent-memory"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Knowledge Vault OS",
+    "shortDescription": "Local-first knowledge vault workflows for Codex",
+    "longDescription": "Knowledge Vault OS helps Codex initialize and operate a Markdown-first personal knowledge base. It routes external sources through evidence packets, captures local file changes, compiles stable conclusions into topic pages, builds a lightweight local dashboard, and teaches Codex how to read the vault before acting.",
+    "developerName": "Aijiayu",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/m18516241624-arch/knowledge-vault-os",
+    "privacyPolicyURL": "https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/docs/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/LICENSE",
+    "defaultPrompt": [
+      "Initialize a local Markdown knowledge vault for Codex",
+      "Run a daily capture over my local work folders",
+      "Ingest these files into my knowledge vault as evidence packets",
+      "Compile stable conclusions from my inbox into project and method pages",
+      "Build a lightweight dashboard for my local vault",
+      "Use my knowledge vault as context for this task"
+    ],
+    "brandColor": "#276749",
+    "screenshots": []
+  }
+}
