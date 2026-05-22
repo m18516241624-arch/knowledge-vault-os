@@ -575,7 +575,7 @@
         font-size: 18px;
       }
 
-      .download {
+      .repo-links {
         display: grid;
         gap: 12px;
         padding: 22px;
@@ -584,7 +584,7 @@
         background: rgba(255,255,255,.08);
       }
 
-      .download a {
+      .repo-links a {
         min-height: 44px;
         display: inline-flex;
         align-items: center;
@@ -604,8 +604,8 @@
       }
 
       .reveal {
-        opacity: 0;
-        transform: translateY(18px);
+        opacity: 1;
+        transform: none;
         transition: opacity .55s ease, transform .55s ease;
       }
 
@@ -752,7 +752,7 @@
         </div>
         <div class="actions">
           <a class="button primary" href="https://github.com/m18516241624-arch/knowledge-vault-os">打开 GitHub 仓库</a>
-          <a class="button" href="https://github.com/m18516241624-arch/knowledge-vault-os/releases/tag/v0.2.0">下载 v0.2.0</a>
+          <a class="button" href="https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/docs/INSTALL.md">阅读安装说明</a>
         </div>
       </div>
 
@@ -955,7 +955,7 @@ node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
             <article class="package-item"><b>Compile Inbox</b><p>只编译明确标记的来源包，重复运行不会重复追加。</p></article>
             <article class="package-item"><b>Dashboard Lite</b><p>静态页面读取本地 JSON，展示分布、项目、证据队列和健康问题。</p></article>
             <article class="package-item"><b>Validation</b><p><code>npm run validate</code> 覆盖 manifest、Skill、demo vault 和隐私扫描。</p></article>
-            <article class="package-item"><b>Release Build</b><p><code>npm run package:plugin</code> 生成可下载的发布归档。</p></article>
+            <article class="package-item"><b>Release Build</b><p><code>npm run package:plugin</code> 生成本地发布归档，便于后续分发和校验。</p></article>
           </div>
         </div>
       </section>
@@ -995,9 +995,9 @@ node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
             <h2>先把主链跑通，再谈更复杂的自动化</h2>
             <p>v0.2.0 的重点是让“本地优先、证据先行、谨慎编译、Agent 调用”成为可安装、可验证、可发布的基础能力。</p>
           </div>
-          <div class="download">
-            <a href="https://github.com/m18516241624-arch/knowledge-vault-os/releases/download/v0.2.0/knowledge-vault-os-0.2.0.tar.gz">下载发布包</a>
+          <div class="repo-links">
             <a href="https://github.com/m18516241624-arch/knowledge-vault-os">查看源码与文档</a>
+            <a href="https://github.com/m18516241624-arch/knowledge-vault-os/blob/main/docs/INSTALL.md">阅读安装说明</a>
           </div>
         </div>
       </section>
