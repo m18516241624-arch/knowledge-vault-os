@@ -6,192 +6,1018 @@
     <title>Knowledge Vault OS for Codex</title>
     <style>
       :root {
-        --bg: #f7f8f5;
-        --ink: #17211c;
-        --muted: #5f6d65;
-        --panel: #ffffff;
-        --line: #dbe1d8;
-        --green: #256d4f;
-        --blue: #2d5f94;
-        --gold: #9b6b1e;
+        --paper: #f5f3ec;
+        --paper-2: #ebe7dd;
+        --ink: #142019;
+        --muted: #617066;
+        --soft: #fbfaf6;
+        --line: #d6d0c2;
+        --green: #25664d;
+        --blue: #315e8a;
+        --amber: #a76f23;
+        --brick: #8d3f38;
+        --hero: #101b16;
+        --hero-soft: #dbe7dd;
       }
-      * { box-sizing: border-box; }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        background: var(--bg);
+        background: var(--paper);
         color: var(--ink);
-        font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+        font: 16px/1.68 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
       }
-      a { color: var(--blue); text-decoration: none; }
-      a:hover { text-decoration: underline; }
+
+      a {
+        color: inherit;
+      }
+
       .hero {
-        min-height: 82vh;
+        position: relative;
+        min-height: 84svh;
+        overflow: hidden;
         display: grid;
         align-items: center;
-        padding: 54px clamp(22px, 6vw, 86px);
+        padding: 48px 7vw 58px;
         background:
-          linear-gradient(120deg, rgba(37,109,79,.15), rgba(45,95,148,.14)),
-          radial-gradient(circle at 78% 24%, rgba(155,107,30,.14), transparent 34%),
-          #fbfcfa;
-        border-bottom: 1px solid var(--line);
+          linear-gradient(90deg, rgba(16, 27, 22, .98), rgba(16, 27, 22, .82) 46%, rgba(16, 27, 22, .56)),
+          repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0, rgba(255,255,255,.045) 1px, transparent 1px, transparent 48px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0, rgba(255,255,255,.035) 1px, transparent 1px, transparent 48px),
+          var(--hero);
+        color: #fff;
       }
-      .hero-inner { max-width: 980px; }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: min(720px, 100%);
+        animation: rise-in .72s ease-out both;
+      }
+
       .eyebrow {
-        margin: 0 0 14px;
-        color: var(--green);
+        margin: 0 0 16px;
+        color: #bdd8c6;
         font-size: 13px;
         font-weight: 800;
-        letter-spacing: .08em;
+        letter-spacing: 0;
         text-transform: uppercase;
       }
-      h1 {
+
+      h1,
+      h2,
+      h3,
+      p {
         margin: 0;
-        max-width: 860px;
-        font-size: clamp(40px, 7vw, 82px);
+      }
+
+      h1 {
+        max-width: 700px;
+        font-size: 74px;
         line-height: 1.02;
         letter-spacing: 0;
       }
-      .lead {
-        max-width: 740px;
-        margin: 24px 0 0;
-        color: var(--muted);
-        font-size: clamp(18px, 2.2vw, 24px);
+
+      .hero h1 span {
+        color: #d8c08c;
       }
-      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+
+      .lead {
+        max-width: 680px;
+        margin-top: 24px;
+        color: var(--hero-soft);
+        font-size: 22px;
+      }
+
+      .hero-proof {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .hero-proof span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 6px 10px;
+        border: 1px solid rgba(255,255,255,.22);
+        border-radius: 8px;
+        background: rgba(255,255,255,.08);
+        color: #f2f4ef;
+        font-size: 13px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
       .button {
         display: inline-flex;
         align-items: center;
-        min-height: 44px;
+        justify-content: center;
+        min-height: 46px;
         padding: 10px 16px;
-        border: 1px solid var(--line);
+        border: 1px solid rgba(255,255,255,.26);
         border-radius: 8px;
-        background: var(--panel);
-        color: var(--ink);
-        font-weight: 700;
+        background: rgba(255,255,255,.09);
+        color: #fff;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform .18s ease, background .18s ease;
       }
-      .button.primary { background: var(--green); border-color: var(--green); color: #fff; }
-      main { padding: 34px clamp(22px, 6vw, 86px) 64px; }
-      section { max-width: 1120px; margin: 0 auto 26px; }
-      h2 { margin: 0 0 14px; font-size: 26px; line-height: 1.2; }
-      .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-      .panel {
-        padding: 18px;
-        border: 1px solid var(--line);
+
+      .button:hover {
+        transform: translateY(-2px);
+        background: rgba(255,255,255,.16);
+      }
+
+      .button.primary {
+        background: #d8c08c;
+        border-color: #d8c08c;
+        color: #172018;
+      }
+
+      .hero-map {
+        position: absolute;
+        z-index: 1;
+        right: 5vw;
+        top: 50%;
+        width: min(560px, 43vw);
+        min-height: 570px;
+        transform: translateY(-50%);
+        opacity: .95;
+      }
+
+      .map-line {
+        position: absolute;
+        left: 64px;
+        right: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(216,192,140,.85), rgba(119,164,202,.9), transparent);
+        animation: line-flow 5.8s linear infinite;
+      }
+
+      .map-line.one { top: 116px; }
+      .map-line.two { top: 286px; }
+      .map-line.three { top: 456px; }
+
+      .map-node {
+        position: absolute;
+        width: 190px;
+        min-height: 108px;
+        padding: 13px;
+        border: 1px solid rgba(255,255,255,.2);
         border-radius: 8px;
-        background: var(--panel);
+        background: rgba(255,255,255,.1);
+        box-shadow: 0 20px 60px rgba(0,0,0,.22);
+        backdrop-filter: blur(12px);
+        transition: transform .2s ease, border-color .2s ease;
       }
-      .panel strong { display: block; margin-bottom: 8px; font-size: 17px; }
-      .panel p { margin: 0; color: var(--muted); }
-      .flow {
+
+      .map-node:hover {
+        transform: translateY(-4px);
+        border-color: rgba(216,192,140,.8);
+      }
+
+      .map-node b {
+        display: block;
+        color: #fff;
+        font-size: 15px;
+      }
+
+      .map-node small {
+        display: block;
+        margin-top: 7px;
+        color: #cfdbd2;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .map-node.n1 { left: 20px; top: 52px; }
+      .map-node.n2 { right: 18px; top: 150px; }
+      .map-node.n3 { left: 76px; top: 252px; }
+      .map-node.n4 { right: 58px; top: 374px; }
+
+      .map-terminal {
+        position: absolute;
+        left: 184px;
+        top: 20px;
+        width: 250px;
+        padding: 13px;
+        border: 1px solid rgba(216,192,140,.42);
+        border-radius: 8px;
+        background: rgba(11,17,14,.76);
+        color: #e9f0e8;
+        font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .map-terminal em {
+        color: #d8c08c;
+        font-style: normal;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .intro-strip {
         display: grid;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 8px;
+        grid-template-columns: 1.1fr 1fr 1fr;
+        gap: 1px;
+        background: var(--line);
+        border-bottom: 1px solid var(--line);
       }
-      .step {
-        min-height: 92px;
-        padding: 12px;
+
+      .strip-cell {
+        padding: 22px 7vw 22px;
+        background: var(--soft);
+      }
+
+      .strip-cell + .strip-cell {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+
+      .strip-label {
+        display: block;
+        color: var(--amber);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .strip-cell strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .section {
+        padding: 70px 7vw;
+      }
+
+      .section.alt {
+        background: var(--soft);
+        border-block: 1px solid var(--line);
+      }
+
+      .section-inner {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, .82fr) minmax(280px, 1fr);
+        gap: 42px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      h2 {
+        max-width: 620px;
+        font-size: 42px;
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      .section-head p,
+      .wide-note {
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .basics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .basic {
+        min-height: 252px;
+        padding: 22px;
         border: 1px solid var(--line);
         border-radius: 8px;
         background: #fff;
-        color: var(--muted);
-        font-size: 14px;
+        transition: transform .18s ease, border-color .18s ease;
       }
-      .step b { display: block; color: var(--ink); font-size: 15px; }
+
+      .basic:hover {
+        transform: translateY(-3px);
+        border-color: #bba66d;
+      }
+
+      .basic .num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 18px;
+        border-radius: 50%;
+        background: #e7ddc4;
+        color: #624717;
+        font-weight: 900;
+      }
+
+      .basic h3 {
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .basic p {
+        margin-top: 12px;
+        color: var(--muted);
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 30px;
+        align-items: start;
+      }
+
+      .workflow-label {
+        position: sticky;
+        top: 22px;
+        padding-top: 8px;
+      }
+
+      .workflow-label strong {
+        display: block;
+        font-size: 24px;
+      }
+
+      .workflow-label p {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .timeline-row {
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr) minmax(200px, .56fr);
+        gap: 16px;
+        align-items: stretch;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      .timeline-row .tag {
+        color: var(--green);
+        font-weight: 900;
+      }
+
+      .timeline-row h3 {
+        font-size: 20px;
+      }
+
+      .timeline-row p {
+        margin-top: 5px;
+        color: var(--muted);
+      }
+
+      .path {
+        align-self: center;
+        overflow-wrap: anywhere;
+        color: var(--blue);
+        font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .layers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .layer {
+        display: grid;
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 16px;
+        min-height: 144px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .layer-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      .layer h3 {
+        margin-bottom: 6px;
+        font-size: 21px;
+      }
+
+      .layer p {
+        color: var(--muted);
+      }
+
+      .day-plan {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .command-panel {
+        overflow: hidden;
+        border-radius: 8px;
+        background: #111a15;
+        color: #e8efe8;
+        box-shadow: 0 18px 55px rgba(20,32,25,.16);
+      }
+
+      .command-top {
+        display: flex;
+        gap: 7px;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #d8c08c;
+      }
+
       pre {
         margin: 0;
         overflow: auto;
         padding: 18px;
-        border-radius: 8px;
-        background: #17211c;
-        color: #eff5ef;
-        font-size: 14px;
+        color: #eff6ef;
+        font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       }
-      .note { color: var(--muted); }
-      footer {
-        padding: 28px clamp(22px, 6vw, 86px);
-        border-top: 1px solid var(--line);
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .explain-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .explain {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .explain:first-child {
+        padding-top: 0;
+      }
+
+      .explain strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 19px;
+      }
+
+      .explain p {
         color: var(--muted);
       }
-      @media (max-width: 860px) {
-        .hero { min-height: auto; padding-top: 42px; }
-        .grid, .flow { grid-template-columns: 1fr; }
+
+      .package-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .package-item {
+        min-height: 180px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      .package-item b {
+        display: block;
+        font-size: 18px;
+      }
+
+      .package-item p {
+        margin-top: 10px;
+        color: var(--muted);
+      }
+
+      .boundary {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .boundary-block {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .boundary-block h3 {
+        font-size: 24px;
+      }
+
+      .boundary-block ul {
+        margin: 14px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .cta {
+        padding: 72px 7vw;
+        background: var(--hero);
+        color: #fff;
+      }
+
+      .cta-inner {
+        display: grid;
+        grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr);
+        gap: 40px;
+        width: min(1160px, 100%);
+        margin: 0 auto;
+        align-items: center;
+      }
+
+      .cta h2 {
+        color: #fff;
+      }
+
+      .cta p {
+        margin-top: 16px;
+        color: #cbd8cf;
+        font-size: 18px;
+      }
+
+      .download {
+        display: grid;
+        gap: 12px;
+        padding: 22px;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 8px;
+        background: rgba(255,255,255,.08);
+      }
+
+      .download a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #d8c08c;
+        color: #172018;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      footer {
+        padding: 28px 7vw;
+        background: #0d1612;
+        color: #b9c6bd;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity .55s ease, transform .55s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes rise-in {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes line-flow {
+        from { background-position: 0 0; }
+        to { background-position: 560px 0; }
+      }
+
+      @media (max-width: 1040px) {
+        h1 { font-size: 58px; }
+        h2 { font-size: 34px; }
+        .hero {
+          min-height: 82svh;
+          padding-bottom: 40px;
+        }
+        .hero-map {
+          right: -70px;
+          width: 430px;
+          opacity: .48;
+        }
+        .intro-strip,
+        .section-head,
+        .workflow,
+        .day-plan,
+        .boundary,
+        .cta-inner {
+          grid-template-columns: 1fr;
+        }
+        .basics,
+        .layers,
+        .package-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .workflow-label {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body { font-size: 15px; }
+        .hero {
+          min-height: auto;
+          padding: 28px 22px 34px;
+        }
+        h1 { font-size: 38px; }
+        .lead {
+          margin-top: 16px;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        .hero-proof {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 7px;
+          margin-top: 16px;
+        }
+        .hero-proof span {
+          min-height: 30px;
+          font-size: 12px;
+        }
+        .actions {
+          margin-top: 20px;
+          gap: 8px;
+        }
+        .button {
+          min-height: 40px;
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+        .hero-map {
+          position: absolute;
+          right: -86px;
+          top: auto;
+          bottom: -112px;
+          width: 310px;
+          min-height: 304px;
+          margin-top: 0;
+          transform: none;
+          opacity: .42;
+          pointer-events: none;
+        }
+        .map-terminal {
+          display: none;
+        }
+        .map-line.one { top: 74px; }
+        .map-line.two { top: 162px; }
+        .map-line.three { top: 250px; }
+        .map-node {
+          width: 154px;
+          min-height: 82px;
+          padding: 10px;
+        }
+        .map-node.n1 { left: 0; top: 20px; }
+        .map-node.n2 { right: 0; top: 88px; }
+        .map-node.n3 { left: 18px; top: 170px; }
+        .map-node.n4 { right: 18px; top: 238px; }
+        .intro-strip,
+        .basics,
+        .layers,
+        .package-grid {
+          grid-template-columns: 1fr;
+        }
+        .strip-cell,
+        .strip-cell + .strip-cell {
+          padding: 18px 22px;
+        }
+        .section,
+        .cta {
+          padding: 48px 22px;
+        }
+        .timeline-row {
+          grid-template-columns: 1fr;
+        }
+        .layer {
+          grid-template-columns: 1fr;
+        }
+        pre {
+          font-size: 12px;
+        }
       }
     </style>
   </head>
   <body>
     <header class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">Local-first knowledge workflow for Codex</p>
-        <h1>Knowledge Vault OS</h1>
-        <p class="lead">一套可安装、可复用的 Codex 知识库操作系统，把信息从感知、证据、编译，一路推进到 Agent 可调用的长期 Markdown 主库。</p>
+        <p class="eyebrow">Codex 可安装的本地知识库操作系统</p>
+        <h1>Knowledge Vault OS <span>把资料变成可调用的长期知识</span></h1>
+        <p class="lead">它不是 Obsidian 模板，也不是把文件丢给 RAG 的问答库。它是一套从感知、证据、编译到 Agent 调用的工作流，让 Codex 能持续维护你的 Markdown 主库。</p>
+        <div class="hero-proof" aria-label="核心能力">
+          <span>Markdown / Obsidian 主库</span>
+          <span>Source Packet 证据层</span>
+          <span>Agent Brief 调用层</span>
+          <span>Dashboard Lite 可视化</span>
+        </div>
         <div class="actions">
           <a class="button primary" href="https://github.com/m18516241624-arch/knowledge-vault-os">打开 GitHub 仓库</a>
           <a class="button" href="https://github.com/m18516241624-arch/knowledge-vault-os/releases/tag/v0.2.0">下载 v0.2.0</a>
         </div>
       </div>
+
+      <div class="hero-map" aria-hidden="true">
+        <div class="map-line one"></div>
+        <div class="map-line two"></div>
+        <div class="map-line three"></div>
+        <div class="map-terminal"><em>$</em> npm run validate<br><em>$</em> daily-capture<br><em>$</em> compile-inbox<br><em>$</em> dashboard-lite</div>
+        <div class="map-node n1"><b>00-inbox</b><small>新来源先入证据层，不直接污染主库。</small></div>
+        <div class="map-node n2"><b>Capture Ledger</b><small>记录来源、时间窗口、敏感等级和处理状态。</small></div>
+        <div class="map-node n3"><b>Topic Pages</b><small>稳定结论进入项目、决策、方法和上下文页。</small></div>
+        <div class="map-node n4"><b>Agent Brief</b><small>未来的 Codex 先读压缩上下文，再执行任务。</small></div>
+      </div>
     </header>
 
     <main>
-      <section>
-        <h2>它解决什么问题</h2>
-        <div class="grid">
-          <article class="panel"><strong>不是临时问答</strong><p>它不把资料直接丢给 RAG，而是先进入证据层，再判断哪些结论值得长期保存。</p></article>
-          <article class="panel"><strong>不是普通模板</strong><p>它包含 Codex Skill、vault 模板、本地脚本、dashboard-lite 和发布验证链路。</p></article>
-          <article class="panel"><strong>不是云端黑盒</strong><p>Markdown/Obsidian 是唯一长期主库，敏感资料默认留在本地和证据层。</p></article>
+      <div class="intro-strip" aria-label="项目速览">
+        <div class="strip-cell">
+          <span class="strip-label">一句话</span>
+          <strong>把你的个人知识库变成 Codex 能操作、能维护、能调用的本地系统。</strong>
+        </div>
+        <div class="strip-cell">
+          <span class="strip-label">为什么需要</span>
+          <strong>聊天记录会丢，RAG 会飘，只有可追溯的 Markdown 主库能长期复用。</strong>
+        </div>
+        <div class="strip-cell">
+          <span class="strip-label">当前版本</span>
+          <strong>v0.2.0 已包含安装、采集、编译、dashboard、验证和发布包。</strong>
+        </div>
+      </div>
+
+      <section class="section reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>先从最基础的问题说起</h2>
+            <p>很多人已经有 Obsidian、文件夹、AI 聊天记录和各种收藏，但它们通常只是堆在一起。Knowledge Vault OS 做的事，是给这些信息一条可控的晋升路径。</p>
+          </div>
+          <div class="basics">
+            <article class="basic">
+              <span class="num">1</span>
+              <h3>为什么不是直接问 AI？</h3>
+              <p>直接问 AI 适合临时答案，但不适合沉淀长期知识。项目判断、个人方法、组织经验和决策边界需要被写回稳定位置，下次才能继续使用。</p>
+            </article>
+            <article class="basic">
+              <span class="num">2</span>
+              <h3>为什么不是普通笔记模板？</h3>
+              <p>模板只规定文件夹怎么摆。这个项目还规定来源怎么进来、证据怎么登记、什么时候能晋升、Codex 做事前应该读哪些入口。</p>
+            </article>
+            <article class="basic">
+              <span class="num">3</span>
+              <h3>为什么强调本地优先？</h3>
+              <p>个人资料、聊天记录、公司上下文和客户信息都有敏感边界。Markdown 主库在本地，外部工具只做辅助，不替代事实源。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2>核心工作流</h2>
-        <div class="flow" aria-label="Knowledge workflow">
-          <div class="step"><b>感知</b>扫描项目、文件、笔记或外部来源。</div>
-          <div class="step"><b>来源登记</b>记录来源、时间窗口、敏感等级。</div>
-          <div class="step"><b>证据入账</b>先写入 source packet 和 capture ledger。</div>
-          <div class="step"><b>分块摘要</b>拆出候选结论，保留可追溯路径。</div>
-          <div class="step"><b>晋升判断</b>只晋升稳定、可复用、已脱敏内容。</div>
-          <div class="step"><b>主题页编译</b>写入项目、决策、方法和 Agent Brief。</div>
-          <div class="step"><b>Agent 调用</b>Codex 做事前读取压缩上下文。</div>
+      <section class="section alt reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>三个核心概念</h2>
+            <p>理解这三个词，就能理解整套系统为什么能从“资料收集”走到“智能体调用”。</p>
+          </div>
+          <div class="basics">
+            <article class="basic">
+              <span class="num">A</span>
+              <h3>Source Packet</h3>
+              <p>每个来源先变成来源包，里面记录路径、时间窗口、敏感等级、候选结论和下一步。它是证据，不是最终知识。</p>
+            </article>
+            <article class="basic">
+              <span class="num">B</span>
+              <h3>Topic Page</h3>
+              <p>稳定、可追溯、可复用的结论，才会进入项目页、决策页、方法页或上下文页。这里是长期可读的知识主干。</p>
+            </article>
+            <article class="basic">
+              <span class="num">C</span>
+              <h3>Agent Brief</h3>
+              <p>给 Codex 和其他 agent 读取的压缩入口。它不保存所有原文，只保存未来做事必须先知道的上下文。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2>包里有什么</h2>
-        <div class="grid">
-          <article class="panel"><strong>Codex Skill</strong><p>负责初始化、接入、编译、调用和维护知识库。</p></article>
-          <article class="panel"><strong>Markdown Vault 模板</strong><p>包含 inbox、projects、decisions、methods、agent briefs 和维护目录。</p></article>
-          <article class="panel"><strong>本地脚本</strong><p>支持 daily capture、compile-inbox、dashboard build、lint、安装、打包和验证。</p></article>
-          <article class="panel"><strong>Dashboard Lite</strong><p>用静态页面查看目录分布、项目状态、证据队列、近期笔记和健康问题。</p></article>
-          <article class="panel"><strong>隐私边界</strong><p>真实聊天、公司资料、私有索引和机器路径不进入公开包。</p></article>
-          <article class="panel"><strong>发布验证</strong><p>GitHub Actions 会跑 validate、dashboard 截图验收和发布包构建。</p></article>
+      <section class="section reveal">
+        <div class="section-inner workflow">
+          <div class="workflow-label">
+            <strong>从感知到调用</strong>
+            <p>这条链路保证新信息不会直接变成“真相”，而是先留下证据，再经过判断和编译。</p>
+          </div>
+          <div class="timeline" aria-label="知识晋升流程">
+            <article class="timeline-row">
+              <div class="tag">Step 01</div>
+              <div><h3>感知</h3><p>扫描本地项目、Markdown 笔记、导出文件或其他来源。</p></div>
+              <div class="path">scripts/daily-capture.mjs</div>
+            </article>
+            <article class="timeline-row">
+              <div class="tag">Step 02</div>
+              <div><h3>来源登记</h3><p>明确来源是谁、什么时候产生、敏感等级是什么、是否允许自动处理。</p></div>
+              <div class="path">_maintenance/source-registry.md</div>
+            </article>
+            <article class="timeline-row">
+              <div class="tag">Step 03</div>
+              <div><h3>证据入账</h3><p>把原始线索写入 inbox、source packet 和 capture ledger。</p></div>
+              <div class="path">00-inbox/source-packets/</div>
+            </article>
+            <article class="timeline-row">
+              <div class="tag">Step 04</div>
+              <div><h3>稳定性判断</h3><p>判断哪些内容只是临时记录，哪些内容可以成为长期复用的结论。</p></div>
+              <div class="path">decision: review / compile</div>
+            </article>
+            <article class="timeline-row">
+              <div class="tag">Step 05</div>
+              <div><h3>主题页编译</h3><p>把明确可复用的结论写入项目、决策、方法、上下文或 AI Skill 页面。</p></div>
+              <div class="path">scripts/compile-inbox.mjs</div>
+            </article>
+            <article class="timeline-row">
+              <div class="tag">Step 06</div>
+              <div><h3>Agent 调用</h3><p>Codex 开始任务前读取全局索引、当前重点和任务相关主题页。</p></div>
+              <div class="path">80-agent-briefs/</div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2>快速开始</h2>
-        <pre><code>git clone https://github.com/m18516241624-arch/knowledge-vault-os.git
+      <section class="section alt reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>五层架构</h2>
+            <p>它不是把所有东西塞进一个库里，而是把信息按职责分层。每一层只做自己该做的事。</p>
+          </div>
+          <div class="layers">
+            <article class="layer">
+              <span class="layer-mark">1</span>
+              <div><h3>来源治理层</h3><p>定义来源等级、敏感边界、入口路径和能否自动编译。</p></div>
+            </article>
+            <article class="layer">
+              <span class="layer-mark">2</span>
+              <div><h3>证据层</h3><p>承接原始资料和来源包，保留事实线索，避免污染长期主题页。</p></div>
+            </article>
+            <article class="layer">
+              <span class="layer-mark">3</span>
+              <div><h3>知识编译层</h3><p>只接收稳定、可追溯、可复用、已脱敏的结论。</p></div>
+            </article>
+            <article class="layer">
+              <span class="layer-mark">4</span>
+              <div><h3>Agent 调用层</h3><p>用全局索引和 Agent Brief 让 Codex 快速读懂当前上下文。</p></div>
+            </article>
+            <article class="layer">
+              <span class="layer-mark">5</span>
+              <div><h3>本地可视化层</h3><p>Dashboard Lite 只读本地 vault，用于查看分布、证据队列和健康问题。</p></div>
+            </article>
+            <article class="layer">
+              <span class="layer-mark">Git</span>
+              <div><h3>版本与发布</h3><p>Git 负责回滚、迁移和公开发布；发布包不包含用户真实私密资料。</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>一天里怎么用</h2>
+            <p>新用户可以先不用理解所有文件夹。按下面这条日常路径，就能让系统运转起来。</p>
+          </div>
+          <div class="day-plan">
+            <div class="command-panel">
+              <div class="command-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <pre><code>git clone https://github.com/m18516241624-arch/knowledge-vault-os.git
 cd knowledge-vault-os
 npm install
 npm run validate
-node scripts/init-vault.mjs ~/Documents/MyKnowledgeVault</code></pre>
-      </section>
 
-      <section>
-        <h2>适合谁</h2>
-        <div class="grid">
-          <article class="panel"><strong>长期使用 Codex 的人</strong><p>希望 Codex 不只是回答问题，而是能持续读懂自己的项目和方法。</p></article>
-          <article class="panel"><strong>重视本地知识主权的人</strong><p>希望 Obsidian/Markdown 留作事实源，而不是把私密资料交给外部系统。</p></article>
-          <article class="panel"><strong>想产品化知识流程的人</strong><p>希望把自己的工作方式打包给别人安装，而不是只给一份笔记模板。</p></article>
+node scripts/init-vault.mjs ~/Documents/MyKnowledgeVault
+node scripts/daily-capture.mjs ~/Documents/MyKnowledgeVault ~/Documents/MyProject --target-date YYYY-MM-DD
+node scripts/compile-inbox.mjs ~/Documents/MyKnowledgeVault --dry-run
+node scripts/build-dashboard-lite.mjs ~/Documents/MyKnowledgeVault</code></pre>
+            </div>
+            <div class="explain-list">
+              <div class="explain"><strong>先初始化 vault</strong><p>生成一套 Markdown 目录、模板和 Agent 入口文件，Obsidian 可以直接打开。</p></div>
+              <div class="explain"><strong>再捕获当天来源</strong><p>daily-capture 会记录变更文件，但不会擅自总结成长期知识。</p></div>
+              <div class="explain"><strong>人工或 Codex 做晋升判断</strong><p>只有当 source packet 写明 <code>decision: compile</code>、稳定结论和目标页面时，才进入编译。</p></div>
+              <div class="explain"><strong>最后让 Codex 调用</strong><p>做项目、写文章、整理方法或处理需求前，让 Codex 先读 Agent Brief 和相关主题页。</p></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2>当前边界</h2>
-        <p class="note">v0.2.0 不包含账号连接器、云同步、向量数据库、自动聊天记录抓取或团队权限系统。它先把本地优先、证据先行、谨慎编译和 Agent 调用这条主链跑通。</p>
+      <section class="section alt reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>包里具体有什么</h2>
+            <p>v0.2.0 已经不是一个空壳，而是一套可以安装、验证、打包和重复运行的本地工作流。</p>
+          </div>
+          <div class="package-grid">
+            <article class="package-item"><b>Codex Plugin</b><p><code>.codex-plugin/plugin.json</code> 描述插件入口和安装信息。</p></article>
+            <article class="package-item"><b>Main Skill</b><p><code>skills/knowledge-vault-os/</code> 规定 Codex 如何初始化、接入、编译和调用。</p></article>
+            <article class="package-item"><b>Vault Template</b><p><code>assets/vault-template/</code> 提供公开安全的 Markdown 主库结构。</p></article>
+            <article class="package-item"><b>Daily Capture</b><p>扫描本地来源目录，写 source packet、ledger 和 daily log。</p></article>
+            <article class="package-item"><b>Compile Inbox</b><p>只编译明确标记的来源包，重复运行不会重复追加。</p></article>
+            <article class="package-item"><b>Dashboard Lite</b><p>静态页面读取本地 JSON，展示分布、项目、证据队列和健康问题。</p></article>
+            <article class="package-item"><b>Validation</b><p><code>npm run validate</code> 覆盖 manifest、Skill、demo vault 和隐私扫描。</p></article>
+            <article class="package-item"><b>Release Build</b><p><code>npm run package:plugin</code> 生成可下载的发布归档。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>适合谁，不适合谁</h2>
+            <p>它适合把 AI 当长期协作者的人，而不是只想做一次性资料问答的人。</p>
+          </div>
+          <div class="boundary">
+            <article class="boundary-block">
+              <h3>适合</h3>
+              <ul>
+                <li>长期使用 Codex，希望它记住项目上下文的人。</li>
+                <li>用 Obsidian / Markdown 做个人知识主库的人。</li>
+                <li>希望把自己的知识整理方法打包给别人安装的人。</li>
+                <li>重视隐私边界，不想把原始聊天和公司资料直接外传的人。</li>
+              </ul>
+            </article>
+            <article class="boundary-block">
+              <h3>暂不适合</h3>
+              <ul>
+                <li>只想要一个云端问答机器人。</li>
+                <li>希望自动抓取所有账号、聊天和附件。</li>
+                <li>希望开箱即用团队权限、云同步和向量数据库。</li>
+                <li>不愿意维护 Markdown 主库和晋升规则。</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta reveal">
+        <div class="cta-inner">
+          <div>
+            <h2>先把主链跑通，再谈更复杂的自动化</h2>
+            <p>v0.2.0 的重点是让“本地优先、证据先行、谨慎编译、Agent 调用”成为可安装、可验证、可发布的基础能力。</p>
+          </div>
+          <div class="download">
+            <a href="https://github.com/m18516241624-arch/knowledge-vault-os/releases/download/v0.2.0/knowledge-vault-os-0.2.0.tar.gz">下载发布包</a>
+            <a href="https://github.com/m18516241624-arch/knowledge-vault-os">查看源码与文档</a>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
-      Knowledge Vault OS for Codex · MIT License · v0.2.0
+      Knowledge Vault OS for Codex · MIT License · v0.2.0 · Local-first Markdown knowledge workflow
     </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.16 });
+
+      document.querySelectorAll(".reveal").forEach((section) => observer.observe(section));
+    </script>
   </body>
 </html>

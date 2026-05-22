@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Added a standalone HTML project introduction page.
+- Expanded the standalone HTML project introduction page with stronger visual hierarchy, workflow diagrams, basic concepts, usage steps, and responsive checks.
 
 ## 0.2.0
 
