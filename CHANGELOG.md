@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a bilingual Chinese and English project introduction to the GitHub README.
 - Expanded the standalone HTML project introduction page with stronger visual hierarchy, workflow diagrams, basic concepts, usage steps, and responsive checks.
 - Removed release download calls to action from the HTML introduction page.
 - Hardened the introduction page so static screenshots and no-scroll browser contexts do not hide content.
